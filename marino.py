@@ -6,7 +6,7 @@ ti.init(arch=ti.gpu)
 
 @ti.data_oriented
 class PendulumSystem(object):
-    def __init__(self, g=9.81, dt=0.01):
+    def __init__(self, g=9.81, dt=0.001):
         self.g = g
         self.dt = dt
         self.t = ti.field(float, ())
@@ -39,7 +39,7 @@ class PendulumSystem(object):
             # analytic solution
         self.t[None] += self.dt
         self.x[None] += 0
-        self.y[None] -= self.g/10000
+        self.y[None] -=self.g/2*self.t[None]**2
 
 
     def render(self, gui):  # Render the scene on GUI
